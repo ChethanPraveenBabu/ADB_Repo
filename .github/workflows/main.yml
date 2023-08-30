@@ -1,0 +1,32 @@
+name: Import Notebooks to Databricks Workspace
+
+on:
+  push:
+    branches:
+      - main
+      - Dev
+
+jobs:
+  import_notebooks:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+      
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+        
+    - name: Install Databricks CLI
+      run: |
+        pip install databricks-cli
+        
+    - name: Configure Databricks CLI
+      run: |
+        databricks configure --token dapiacc9c497672414ac6a7cc4065ab9db9c-3 --url https://adb-6982357823576007.7.azuredatabricks.net/
+        
+    - name: Import Notebooks to Databricks Workspace
+      run: |
+        databricks workspace import_dir notebooks/ /Repos/attauheed45@gmail.com/Databricks_demo/demo_folder/
