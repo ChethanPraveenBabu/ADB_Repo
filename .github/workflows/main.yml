@@ -25,7 +25,7 @@ jobs:
         
     - name: Configure Databricks CLI
       run: |
-        databricks configure --token dapiacc9c497672414ac6a7cc4065ab9db9c-3 --url https://adb-6982357823576007.7.azuredatabricks.net/
+        databricks configure --token dapiacc9c497672414ac6a7cc4065ab9db9c-3 --host https://adb-6982357823576007.7.azuredatabricks.net/
         
     - name: Import Notebooks to Databricks Workspace
       run: |
