@@ -1,10 +1,10 @@
-name: Import Notebooks to Databricks Workspace
+name: Databricks Notebook Import
 
 on:
   push:
     branches:
       - main
-      - Dev
+      - dev
 
 jobs:
   import_notebooks:
@@ -24,8 +24,11 @@ jobs:
         pip install databricks-cli
         
     - name: Configure Databricks CLI
+      env:
+        DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
+        DATABRICKS_HOST: https://adb-6982357823576007.7.azuredatabricks.net/
       run: |
-        databricks configure --token dapiacc9c497672414ac6a7cc4065ab9db9c-3 --host https://adb-6982357823576007.7.azuredatabricks.net/
+        echo -e "$DATABRICKS_TOKEN\n$DATABRICKS_HOST" | databricks configure --token
         
     - name: Import Notebooks to Databricks Workspace
       run: |
