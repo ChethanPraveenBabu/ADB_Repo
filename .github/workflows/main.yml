@@ -28,7 +28,7 @@ jobs:
         DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
         DATABRICKS_HOST: https://adb-6982357823576007.7.azuredatabricks.net/
       run: |
-        echo -e "$DATABRICKS_TOKEN\n$DATABRICKS_HOST" | databricks configure --token
+        echo -e "$DATABRICKS_TOKEN\nhttps://adb-6982357823576007.7.azuredatabricks.net/" | databricks configure --token
         
     - name: Import Notebooks to Databricks Workspace
       run: |
